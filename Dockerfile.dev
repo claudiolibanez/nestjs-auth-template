@@ -1,0 +1,22 @@
+# Escolhe uma imagem base do Node.js. A tag "20.11" refere-se à versão que será utilizada do Node.js
+FROM node:20.11S
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /usr/node/app
+
+# Copia os arquivos de definição de pacote do Node.js
+COPY package*.json ./
+
+# Instala as dependências do projeto, incluindo pacotes necessários para desenvolvimento
+RUN npm install
+
+# Copia os arquivos restantes do projeto para o diretório de trabalho dentro do container
+COPY . .
+COPY ./.env.example ./.env
+
+# Expõe a porta em que o NestJS vai rodar. A porta padrão do NestJS é 3000
+EXPOSE 3000
+
+# Comando para iniciar o aplicativo usando o Nest CLI. 
+# O comando "nest start --watch" ativa o hot-reloading para desenvolvimento
+CMD ["npm", "run", "start:dev"]

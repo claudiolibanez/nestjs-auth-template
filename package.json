@@ -2,9 +2,13 @@
   "name": "nestjs-auth-template",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Claudio Soares<claudio.soares.dev@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -50,5 +54,34 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3",
     "husky": "^8.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
+    },
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": -10
+      }
+    },
+    "testEnvironment": "node"
   }
 }

@@ -1,22 +1,12 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { AppModule } from 'src/app.module';
+import { AppModule } from 'src/ioC/app.module';
 
-import { configureApp, bootstrap } from 'src/main';
+import { configureApp } from 'src/main';
 
 describe('NestJS Main Functions', () => {
   let app: INestApplication;
-
-  describe('Bootstrap Function', () => {
-    it('should initialize the application and listen on a dynamic port', async () => {
-      app = await bootstrap(0);
-
-      expect(app).toBeDefined();
-
-      await app.close();
-    });
-  });
 
   describe('AppModule', () => {
     beforeAll(async () => {

@@ -1,18 +1,18 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from 'src/app.module';
+import { AppModule } from 'src/ioC/app.module';
 
-export function configureApp(_: INestApplication) {}
+export function configureApp(app: INestApplication) {
+  app.setGlobalPrefix('v1');
+}
 
-export async function bootstrap(port: number = 3000) {
+async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   configureApp(app);
 
-  await app.listen(port);
-
-  return app;
+  await app.listen(3333);
 }
 
 bootstrap();

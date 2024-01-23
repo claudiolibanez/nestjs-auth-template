@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 
-import { AppModule } from 'src/app.module';
+import { AppModule } from 'src/ioC/app.module';
 
 describe('AppModule', () => {
   let module: AppModule;
