@@ -1,6 +1,9 @@
 version: '3.8'
+
 services:
+
   app:
+    container_name: nestjs-auth-app
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -11,3 +14,22 @@ services:
       - "3333:3333"
     environment:
       - NODE_ENV=development
+    depends_on:
+      - database
+
+  database:
+    container_name: nestjs-auth-db
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: nestjs-auth
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local

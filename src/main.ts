@@ -1,10 +1,18 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from 'src/ioC/app.module';
 
 export function configureApp(app: INestApplication) {
-  app.setGlobalPrefix('v1');
+  app.setGlobalPrefix('api/v1');
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 }
 
 async function bootstrap() {
